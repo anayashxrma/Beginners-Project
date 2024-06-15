@@ -1,0 +1,28 @@
+public class CountingProgram {
+
+    public static void main(String[] args) {
+        System.out.println("Counting from 100 to 1 using for loop:");
+        for (int i = 100; i >= 1; i--) {
+            System.out.print(i + " ");
+        }
+        System.out.println(); 
+
+        System.out.println("\nCounting from 100 to 1 using foreach-style loop:");
+        int[] numbers = new int[100];
+        for (int i = 0, num = 100; i < 100; i++, num--) {
+            numbers[i] = num;
+        }
+        for (int num : numbers) {
+            System.out.print(num + " ");
+        }
+        System.out.println(); 
+
+        System.out.println("\nCounting from 100 to 1 using while loop:");
+        int count = 100;
+        while (count >= 1) {
+            System.out.print(count + " ");
+            count--;
+        }
+        System.out.println(); 
+    }
+}

@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class DataTypeChecker {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Choose the data type to validate: \n 1. Character \n 2. Boolean \n 3. Float \n 4. Integer \n 5. Double \n Enter choice (1-5): ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();  // Consume newline
+
+        System.out.print("Enter the value to validate: ");
+        String input = scanner.nextLine();
+
+        boolean isValid = switch (choice) {
+            case 1 -> isCharacter(input);
+            case 2 -> isBoolean(input);
+            case 3 -> isFloat(input);
+            case 4 -> isInteger(input);
+            case 5 -> isDouble(input);
+            default -> {
+                System.out.println("Invalid choice! Please run the program again and choose a valid option.");
+                yield false;
+            }
+        };
+
+        if (isValid) {
+            System.out.println("The entered value is valid for the selected data type.");
+        } else {
+            System.out.println("The entered value is NOT valid for the selected data type.");
+        }
+
+        scanner.close();
+    }
+
+    private static boolean isCharacter(String input) {
+        return input.length() == 1 && Character.isLetter(input.charAt(0));
+    }
+
+    private static boolean isBoolean(String input) {
+        return input.equalsIgnoreCase("true") || input.equalsIgnoreCase("false");
+    }
+
+    private static boolean isFloat(String input) {
+        try {
+            Float.parseFloat(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private static boolean isInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private static boolean isDouble(String input) {
+        try {
+            Double.parseDouble(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+}
